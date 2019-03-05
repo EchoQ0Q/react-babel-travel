@@ -1,0 +1,25 @@
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .check-types {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+  .type-btns {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
