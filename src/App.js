@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import Header from "./pages/header/";
 import Menu from "./pages/menu/";
-
+import Editor from "./pages/editor/";
+import Compile from "./pages/compile/";
 import "./App.scss";
 
 class App extends Component {
@@ -12,7 +13,10 @@ class App extends Component {
         <Header />
         <div className="App-content">
           <Menu />
-          {/* <Editor></Editor> */}
+          <div className="editors">
+            <Editor />
+            <Compile />
+          </div>
         </div>
       </div>
     );

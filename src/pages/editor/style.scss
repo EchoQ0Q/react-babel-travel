@@ -1,0 +1,10 @@
+.editors {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  width: 100%;
+  > div {
+    width: 50%;
+    border: 1px solid #ccc;
+  }
+}

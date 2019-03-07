@@ -12,7 +12,7 @@ export default class Menus extends Component {
         className="menu-wrap"
         onClick={this.handleClick}
         defaultSelectedKeys={["1"]}
-        openKeys="sub1"
+        openKeys={["sub1"]}
         mode="inline"
       >
         <SubMenu

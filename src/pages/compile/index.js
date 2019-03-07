@@ -3,34 +3,19 @@ import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
 
-import "./style.scss";
-
-export default class Editor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: "hello world!"
-    };
-  }
-
-  changeCode = code => {
-    this.setState({
-      code: code.getValue()
-    });
-  };
-
+export default class Compile extends Component {
   render() {
-    const { code } = this.state;
+    const { code } = this.props;
     return (
       <div>
         <CodeMirror
+          ref="editor"
           value={code}
           options={{
             mode: "javascript",
             tabSize: 2,
             lineNumbers: true
           }}
-          onChange={code => this.changeCode(code)}
         />
       </div>
     );
