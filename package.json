@@ -5,6 +5,7 @@
   "dependencies": {
     "@uiw/react-codemirror": "^1.0.19",
     "antd": "^3.14.1",
+    "babel-standalone": "^6.26.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.2",
     "react-codemirror": "^1.0.0",

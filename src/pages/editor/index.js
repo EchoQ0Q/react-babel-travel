@@ -5,17 +5,20 @@ import "codemirror/theme/eclipse.css";
 
 import "./style.scss";
 
+const Babel = require("babel-standalone");
+
 export default class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: "hello world!"
+      code: `const func = data => console.log(123)`
     };
   }
 
   changeCode = code => {
+    const codeVal = code.getValue();
     this.setState({
-      code: code.getValue()
+      code: Babel.transform(codeVal, { presets: ["es2015"] }).code
     });
   };
 
