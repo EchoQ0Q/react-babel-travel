@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import connect from "../../connect";
 
 import { Button } from "antd";
 import "./style.scss";
@@ -43,4 +42,4 @@ class Header extends Component {
   }
 }
 
-export default connect(Header);
+export default Header;

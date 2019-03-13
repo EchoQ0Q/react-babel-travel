@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import connect from "../../connect";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
@@ -23,4 +22,4 @@ class Compile extends Component {
   }
 }
 
-export default connect(Compile);
+export default Compile;

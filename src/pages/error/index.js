@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import connect from "../../connect";
 
 import "./style.scss";
 
@@ -16,4 +15,4 @@ class Error extends Component {
   }
 }
 
-export default connect(Error);
+export default Error;

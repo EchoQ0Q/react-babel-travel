@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import connect from "../../connect";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
 
 import "./style.scss";
 class Editor extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   codeChange = ev => {
     const code = ev.getValue();
     this.props.changeCode(code);
@@ -33,4 +28,4 @@ class Editor extends Component {
   }
 }
 
-export default connect(Editor);
+export default Editor;

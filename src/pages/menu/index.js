@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import connect from "../../connect";
 
 import "./style.scss";
 
@@ -37,4 +36,4 @@ class Menus extends Component {
   }
 }
 
-export default connect(Menus);
+export default Menus;
