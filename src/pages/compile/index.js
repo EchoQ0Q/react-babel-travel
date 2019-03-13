@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import connect from "../../connect";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
 
-export default class Compile extends Component {
+class Compile extends Component {
   render() {
-    const { code } = this.props;
+    const { result } = this.props;
     return (
       <div>
         <CodeMirror
           ref="editor"
-          value={code}
+          value={result}
           options={{
             mode: "javascript",
             tabSize: 2,
@@ -21,3 +22,5 @@ export default class Compile extends Component {
     );
   }
 }
+
+export default connect(Compile);

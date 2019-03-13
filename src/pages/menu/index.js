@@ -1,19 +1,24 @@
 import React, { Component } from "react";
+import connect from "../../connect";
+
 import "./style.scss";
 
 import { Menu, Icon } from "antd";
 
 const SubMenu = Menu.SubMenu;
 
-export default class Menus extends Component {
+class Menus extends Component {
+  handleClick = ({ item, key }) => {
+    this.props.updateMenu(key);
+  };
   render() {
     return (
       <Menu
         className="menu-wrap"
-        onClick={this.handleClick}
-        defaultSelectedKeys={["1"]}
-        openKeys={["sub1"]}
+        //defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["sub1"]}
         mode="inline"
+        onClick={this.handleClick}
       >
         <SubMenu
           key="sub1"
@@ -24,10 +29,12 @@ export default class Menus extends Component {
             </span>
           }
         >
-          <Menu.Item key="1">Option 1</Menu.Item>
-          <Menu.Item key="2">Option 2</Menu.Item>
+          <Menu.Item key="a">let和const</Menu.Item>
+          <Menu.Item key="b">箭头函数</Menu.Item>
         </SubMenu>
       </Menu>
     );
   }
 }
+
+export default connect(Menus);
