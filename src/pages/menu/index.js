@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import store from '../../store/';
 import "./style.scss";
 
 import { Menu, Icon } from "antd";
@@ -7,8 +7,11 @@ import { Menu, Icon } from "antd";
 const SubMenu = Menu.SubMenu;
 
 class Menus extends Component {
-  handleClick = ({ item, key }) => {
-    this.props.updateMenu(key);
+  handleClick = ({ key }) => {
+    store.dispatch({
+      type: 'update-menu',
+      value: key
+    })
   };
   render() {
     return (
