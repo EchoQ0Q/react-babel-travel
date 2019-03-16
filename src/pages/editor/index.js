@@ -2,26 +2,24 @@ import React, { Component } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
-import store from '../../store/';
+import store from "../../store/";
+import { getChangeCode } from "../../store/actionCreators";
 
 import "./style.scss";
 class Editor extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = store.getState();
     store.subscribe(this.getChangeState);
   }
 
   getChangeState = () => {
-    this.setState({...store.getState()});
-  }
+    this.setState({ ...store.getState() });
+  };
 
   codeChange = ev => {
     const code = ev.getValue();
-    store.dispatch({
-      type: 'change-code',
-      value: code
-    });
+    store.dispatch(getChangeCode(code));
   };
 
   render() {

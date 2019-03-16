@@ -9,12 +9,6 @@ import "./App.scss";
 import "antd/dist/antd.css";
 
 class App extends Component {
-<<<<<<< HEAD
-=======
-  constructor(props) {
-    super(props);
-  }
->>>>>>> origin/redux
   render() {
     return (
       <div className="App">
@@ -24,7 +18,7 @@ class App extends Component {
           <div className="editors">
             <Editor />
             <Compile />
-            <Error /> 
+            <Error />
           </div>
         </div>
       </div>

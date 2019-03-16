@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-import store from '../../store/'
+import store from "../../store/";
+import { setPresets, compile, reset } from "../../store/actionCreators";
 import "./style.scss";
 
 class Header extends Component {
@@ -14,28 +15,20 @@ class Header extends Component {
   getStateChange = () => {
     this.setState({
       ...store.getState()
-    })
-  }
+    });
+  };
 
-  setPresets = (preset) => {
-    const action = {
-      type: "set-presets",
-      value: preset
-    };
-    store.dispatch(action);
-  }
+  setPresets = preset => {
+    store.dispatch(setPresets(preset));
+  };
 
   compile = () => {
-    store.dispatch({
-      type: 'compile'
-    })
-  }
+    store.dispatch(compile());
+  };
 
   reset = () => {
-    store.dispatch({
-      type: 'reset'
-    })
-  }
+    store.dispatch(reset());
+  };
 
   render() {
     const { presets } = this.state;
@@ -46,13 +39,14 @@ class Header extends Component {
           <div className="check-types">
             {this.option.map(preset => (
               <p key={preset}>
-                <label htmlFor={preset}>{preset}
-                <input
-                  type="checkbox"
-                  id={preset}
-                  checked={presets.includes(preset)}
-                  onChange={ev => this.setPresets(preset)}
-                />
+                <label htmlFor={preset}>
+                  {preset}
+                  <input
+                    type="checkbox"
+                    id={preset}
+                    checked={presets.includes(preset)}
+                    onChange={ev => this.setPresets(preset)}
+                  />
                 </label>
               </p>
             ))}
