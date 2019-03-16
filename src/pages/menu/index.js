@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import store from "../../store/";
+=======
+import store from '../../store/';
+>>>>>>> origin/redux
 import "./style.scss";
 
 import { Menu, Icon } from "antd";
@@ -7,6 +11,7 @@ import { Menu, Icon } from "antd";
 const SubMenu = Menu.SubMenu;
 
 class Menus extends Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = store.getState();
@@ -14,6 +19,13 @@ class Menus extends Component {
   }
   handleClick = ({ item, key }) => {
     this.props.updateMenu(key);
+=======
+  handleClick = ({ key }) => {
+    store.dispatch({
+      type: 'update-menu',
+      value: key
+    })
+>>>>>>> origin/redux
   };
   render() {
     return (
