@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import store from "../../store/";
 import "./style.scss";
 
 import { Menu, Icon } from "antd";
@@ -7,6 +7,11 @@ import { Menu, Icon } from "antd";
 const SubMenu = Menu.SubMenu;
 
 class Menus extends Component {
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+    store.suscribe();
+  }
   handleClick = ({ item, key }) => {
     this.props.updateMenu(key);
   };

@@ -4,16 +4,11 @@ import Menu from "./pages/menu/";
 import Editor from "./pages/editor/";
 import Compile from "./pages/compile/";
 import Error from "./pages/error/";
-import store from "./store";
 
 import "./App.scss";
 import "antd/dist/antd.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    console.log(store.getState());
-  }
   render() {
     return (
       <div className="App">
