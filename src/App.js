@@ -5,12 +5,15 @@ import Editor from "./pages/editor/";
 import Compile from "./pages/compile/";
 import Error from "./pages/error/";
 
+import { Provider } from "react-redux";
+import store from "./store/";
+
 import "./App.scss";
 import "antd/dist/antd.css";
 
-class App extends Component {
-  render() {
-    return (
+const App = () => {
+  return (
+    <Provider store={store}>
       <div className="App">
         <Header />
         <div className="App-content">
@@ -22,8 +25,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </Provider>
+  );
+};
 
 export default App;

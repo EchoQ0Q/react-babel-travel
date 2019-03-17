@@ -1,36 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
-import store from '../../store/';
+import { connect } from "react-redux";
 
-class Compile extends Component {
-  constructor(props){
-    super(props);
-    this.state = store.getState();
-    store.subscribe(this.getStateChange);
-  }
-  getStateChange = () => {
-    this.setState({
-      ...store.getState()
-    })
-  }
-  render() {
-    const { result } = this.state;
-    return (
-      <div>
-        <CodeMirror
-          ref="editor"
-          value={result}
-          options={{
-            mode: "javascript",
-            tabSize: 2,
-            lineNumbers: true
-          }}
-        />
-      </div>
-    );
-  }
-}
+const Compile = props => {
+  const { result } = props;
+  return (
+    <div>
+      <CodeMirror
+        ref="editor"
+        value={result}
+        options={{
+          mode: "javascript",
+          tabSize: 2,
+          lineNumbers: true
+        }}
+      />
+    </div>
+  );
+};
 
-export default Compile;
+const mapState = state => {
+  return {
+    result: state.result
+  };
+};
+
+export default connect(
+  mapState,
+  null
+)(Compile);
