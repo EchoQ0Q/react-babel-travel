@@ -12,9 +12,9 @@ export const updateMenu = value => ({
   value
 });
 
-export const setPresets = preset => ({
+export const setPresets = value => ({
   type: SETPRESETS,
-  preset
+  value
 });
 
 export const compile = value => ({

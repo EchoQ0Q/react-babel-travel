@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import store from "../../store/";
 import { updateMenu } from "../../store/actionCreators";
-import "./style.scss";
-
+import { connect } from "react-redux";
 import { Menu, Icon } from "antd";
+
+import "./style.scss";
 
 const SubMenu = Menu.SubMenu;
 
 class Menus extends Component {
   handleClick = ({ key }) => {
-    store.dispatch(updateMenu(key));
+    this.props._updateMenu(key);
   };
   render() {
     return (
@@ -37,4 +37,12 @@ class Menus extends Component {
   }
 }
 
-export default Menus;
+const mapDispatch = dispatch => {
+  return {
+    _updateMenu: (key) => {
+      dispatch(updateMenu(key));
+    }
+  };
+}
+
+export default connect(null, mapDispatch)(Menus);

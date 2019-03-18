@@ -14,7 +14,7 @@ export default (state = defaultState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case "set-presets": {
-      const { presets } = state;
+      const { presets } = JSON.parse(JSON.stringify(state));
       const { value } = action;
       presets.includes(value)
         ? presets.splice(presets.indexOf(value), 1)

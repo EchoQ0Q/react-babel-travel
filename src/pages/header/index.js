@@ -1,37 +1,18 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-import store from "../../store/";
+// import store from "../../store/";
 import { setPresets, compile, reset } from "../../store/actionCreators";
 import "./style.scss";
+import { connect } from "react-redux";
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.option = ["es2015", "stage-0", "stage-1", "stage-2", "stage-3"];
-    this.state = store.getState();
-    store.subscribe(this.getStateChange);
   }
 
-  getStateChange = () => {
-    this.setState({
-      ...store.getState()
-    });
-  };
-
-  setPresets = preset => {
-    store.dispatch(setPresets(preset));
-  };
-
-  compile = () => {
-    store.dispatch(compile());
-  };
-
-  reset = () => {
-    store.dispatch(reset());
-  };
-
   render() {
-    const { presets } = this.state;
+    const { presets } = this.props;
     return (
       <div className="header-wrap">
         <p>ES6编译器</p>
@@ -45,22 +26,41 @@ class Header extends Component {
                     type="checkbox"
                     id={preset}
                     checked={presets.includes(preset)}
-                    onChange={ev => this.setPresets(preset)}
+                    onChange={ev => this.props._setPresets(preset)}
                   />
                 </label>
               </p>
             ))}
           </div>
           <div className="type-btns">
-            <Button type="primary" onClick={this.compile}>
+            <Button type="primary" onClick={this.props._compile}>
               Compile
             </Button>
-            <Button onClick={this.reset}>Reset</Button>
+            <Button onClick={this.props._reset}>Reset</Button>
           </div>
         </div>
       </div>
     );
   }
 }
+const mapState = state => {
+  return {
+    presets: state.presets
+  }
+};
 
-export default Header;
+const mapDispatch = dispatch => {
+  return {
+    _setPresets: function(preset){
+      dispatch(setPresets(preset));
+    },
+    _reset: function(){
+      dispatch(reset());
+    },
+    _compile: function(){
+      dispatch(compile());
+    }
+  }
+};
+
+export default connect(mapState, mapDispatch)(Header);

@@ -9,7 +9,6 @@ const Compile = props => {
   return (
     <div>
       <CodeMirror
-        ref="editor"
         value={result}
         options={{
           mode: "javascript",

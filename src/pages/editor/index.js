@@ -2,28 +2,19 @@ import React, { Component } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import "codemirror/keymap/sublime";
 import "codemirror/theme/eclipse.css";
-import store from "../../store/";
 import { getChangeCode } from "../../store/actionCreators";
+import { connect } from "react-redux";
 
 import "./style.scss";
 class Editor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-    store.subscribe(this.getChangeState);
-  }
-
-  getChangeState = () => {
-    this.setState({ ...store.getState() });
-  };
 
   codeChange = ev => {
     const code = ev.getValue();
-    store.dispatch(getChangeCode(code));
+    this.props.codeChange(code);
   };
 
   render() {
-    const { code } = this.state;
+    const { code } = this.props;
     return (
       <div>
         <CodeMirror
@@ -40,4 +31,18 @@ class Editor extends Component {
   }
 }
 
-export default Editor;
+const mapState = state => {
+  return {
+    code: state.code
+  }
+};
+
+const mapDispatch = dispatch => {
+  return {
+    codeChange: code => {
+      dispatch(getChangeCode(code));
+    }
+  }
+};
+
+export default connect(mapState, mapDispatch)(Editor);

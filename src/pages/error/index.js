@@ -1,25 +1,23 @@
 import React, { Component } from "react";
-import store from "../../store/";
 import "./style.scss";
 import { dismissError } from "../../store/actionCreators";
+import { connect } from "react-redux";
 
 class Error extends Component {
   constructor(props) {
     super(props);
-    this.state = store.getState();
-    store.subscribe(this.getChangeState);
   }
-  getChangeState = () => {
-    const new_state = store.getState();
-    this.setState(new_state);
-    if (new_state.errorMsg) {
+  componentDidUpdate(){
+    const { _dismissError , errorMsg} = this.props;
+    if (!!errorMsg) {
       setTimeout(() => {
-        store.dispatch(dismissError());
+        _dismissError();
       }, 3000);
     }
-  };
+  }
+
   render() {
-    const { errorMsg } = this.state;
+    const { errorMsg } = this.props;
     const display = errorMsg ? "block" : "none";
     return (
       <div className="error-wrap" style={{ display }}>
@@ -30,4 +28,18 @@ class Error extends Component {
   }
 }
 
-export default Error;
+const mapState = state => {
+  return {
+    errorMsg: state.errorMsg
+  }
+};
+
+const mapDispatch = dispatch => {
+  return {
+    _dismissError: () => {
+      dispatch(dismissError());
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Error);

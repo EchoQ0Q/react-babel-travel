@@ -5,28 +5,31 @@ import Editor from "./pages/editor/";
 import Compile from "./pages/compile/";
 import Error from "./pages/error/";
 
-import { Provider } from "react-redux";
 import store from "./store/";
+import { Provider } from "react-redux";
+
 
 import "./App.scss";
 import "antd/dist/antd.css";
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
-        <div className="App-content">
-          <Menu />
-          <div className="editors">
-            <Editor />
-            <Compile />
-            <Error />
+class App extends Component{
+  render() {
+    return(
+      <Provider store={store}>
+        <div className="App">
+          <Header />
+          <div className="App-content">
+            <Menu />
+            <div className="editors">
+              <Editor />
+              <Compile />
+              <Error />
+            </div>
           </div>
         </div>
-      </div>
-    </Provider>
-  );
-};
+      </Provider>
+    );
+  }
+}
 
 export default App;
